@@ -1,0 +1,78 @@
+a {
+	color:blueviolet;
+	font-weight: 600;
+	text-decoration: none;
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+}
+a:hover {
+	color:fuchsia;
+}
+body {
+	width: 9in;
+	margin: 0 auto;
+}
+button {
+	border-radius: 4px;
+	font-size: 1.25em;
+	margin-bottom: 0.5em;
+	margin-top: -0.1em;
+	box-shadow: 0.1em 0.1em;
+}
+h1 {
+	border: solid rgba(0, 0, 128, 0.25);
+	border-width: 2px;
+	padding: 0.25em;
+	text-align: center;
+}
+h2 {
+	font-family: sans-serif;
+	font-weight: 400;
+}
+ol {
+	font-size: 1.2em;
+}
+li {
+	margin-bottom: 0.5em;
+}
+li p {
+	font-size: inherit;
+}
+p {
+	clear: both;
+	font-size: 1.25em;
+}
+.count {
+	font-size: 2em;
+	font-weight: normal;
+}
+.label {
+	font-family: sans-serif;
+	font-size: 1.1em;
+	font-weight: 500;
+}
+.line {
+	stroke: gray;
+	stroke-width: 3px;
+}
+.math {
+	background-color: rgba(0, 0, 255, 0.015);
+	text-indent: 3em;
+}
+.node {
+	fill: rgba(255, 255, 128, 1);
+	stroke: rgba(0, 0, 255, 0.75);
+	stroke-width: 2px;
+}
+#main {
+	display: flex;
+	margin-bottom: 1em;
+}
+#numbs {
+	display: block;
+	float: left;
+}
+#probs {
+	display: block;
+	float: right;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Coin flipping in the wild</title>
+	<!-- Enable ASCII Math. Copied from
+	http://docs.mathjax.org/en/latest/start.html -->
+	<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_CHTML"></script>
+	<!-- Enable D3. -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<h1>Coin flipping in the wild</h1>
+	<p>From the point of view of a data scientist there is a good deal of coin flipping taking place on the Internet. By this I mean sites where visitors can register a like or dislike, thumbs up or thumbs down, and so on. For purposes of statistical analysis binary responses like these can be thought of as instances of coin flipping.</p>
+	<p>Coin flipping on the Internet should not be analyzed in the same way we analyze coin flipping in a formal experiment. For our purposes a formal experiment proceeds through three stages:</p>
+	<ol>
+		<li>Determine, in advance, the number of trials to be run--equivalently, the number coin flips to be observed.</li>
+		<li>Collect the data. Stop when the predetermined number of trials has been run.</li>
+		<li>Analyze the data.</li>
+	</ol>
+	<p>The analysis of a formal experiment usually assumes that the trials are <strong>independent</strong>. On the Internet the opposite holds true. When a visitor clicks a thumbs up or thumbs down they typically act while viewing the incidence of prior responses. This may well affect their own response. (There are a few web sites that collect responses before revealing the average response, but they are the exception.)</p>
+	<p>In addition, on the Internet, the number of trials is not under the control of the data scientist. Some products, services, or opinions may collect no or few responses while apparently similar items collect hundreds of responses. Does this mean that the items are different, or is herding at work?</p>
+	<h2>Two restaurants</h2>
+	<p>Imagine two identical, empty restaurants located side by side. Assume that a couple going for dinner pick the restaurant to the right purely by chance. The next person or group to come along is likely to view the restaurant on the right as better, because it has patrons, and to patronize it themselves. Soon, the restaurant on the right will be bustling while the restaurant on the left is shunned.</p>
+	<p>I contend that to model coin flips on the Internet, then, we need to model two related phenomena:</p>
+	<ol>
+		<li>Given two or more similar (perhaps identical) items, the item that has collected more responses in the past is likely to collect more in the future.</li>
+		<li>For a given item, the average approval rating at a given point in time may affect subsequent responses.</li>
+	</ol>
+	<h2>Model: Bayesian estimation</h2>
+	<p>A simple model can be applied to coin flips on the web. The model has two stages:</p>
+	<ol>
+		<li>Assume that a visitor to a page is confronted with two items (denoted Item 1 and Item 2) and can respond to one or the other, but not both. This is a simplification, of course, but may approximate reality in some contexts. Assume that the visitor arrives at the page with a uniform Bayesian prior, that is, with no predisposition to respond to one item rather than the other. Finally, assume that the visitor updates his or her predisposition based on the data that are presented concerning previous visitors. According to Alan Agresti, an actor with a uniform prior updates their decision probability according to the following formula:
+			<p class='math'>
+			`p_1 = (y_1 + 1) / (n_1 + 2)`
+			</p>
+			where y<sub>1</sub> is the observed number of heads and n<sub>1</sub> is the sample size. (See "An Introduction to Categorical Data Analysis, 2nd Edition" by Alan Agresti, page 17.) In the present case n<sub>1</sub> is the total number of prior responses and y<sub>1</sub> is the number of responses to Item 1. The visitor then responds to Item 1 with probability p<sub>1</sub>; if they do not respond to Item 1 then they respond to Item 2. <p>There will of course, be many visitors who do not respond to either item. For our purposes they are invisible. A deeper model would account for the non-responders because a web site with a high percentage of responders among its visitors can be viewed as more engaging than a web site with a low percentage of responders.</p>
+		</li>
+		<li>Once a visitor has selected which item to respond to they go through the same Bayesian estimation procedure. They note the total number of votes the item has received and how many have been up-votes. They then provide an up-vote with probability
+			<p class='math'>
+			`p_2 = (y_2 + 1) / (n_2 + 2)`
+			</p>
+		where y<sub>2</sub> is the observed number of up-votes and n<sub>2</sub> is the total number of votes for the item the visitor has chosen. The visitor then up-votes with probability p<sub>2</sub>. If they do not provide an up-vote then they provide a down-vote.
+		</li>
+	</ol>
+	<p>Notice that for the first visitor to the website (before any responses have been recorded)</p>
+	<p class='math'>
+		`p_1 = 1/2,&nbsp;p_2 = 1/2`
+	</p>
+	<p>This make intuitive sense, given our assumption that visitors arrive with no predispositions.</p>
+	<h2>Simulation</h2>
+	<p>We can simulate visitors arriving at a web page and responding--either to Item 1 or 2, and either thumbs up or thumbs down--as a dynamically updating decision tree, coupled with a dynamically updating set of probabilities. The probabilities are updated according to the Bayesian inference equations exhibited above.</p>
+	<button id='visit'>Visit</button><br>
+	<div id='main'>
+		<svg id='numbs'></svg><svg id='probs'></svg>
+	</div>
+	<p>TBD...</p>
+</body>
+<script src="index.js"></script>
+</html>
