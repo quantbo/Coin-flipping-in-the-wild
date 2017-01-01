@@ -13,6 +13,7 @@
 </head>
 <body>
 	<h1>Coin flipping in the wild</h1>
+	<p id='pub'>Published: 2017-01-02</p>
 	<p>From the point of view of a data scientist there is a good deal of coin flipping taking place on the Internet. By this I mean sites where visitors can register a like or dislike, thumbs up or thumbs down, and so on. For purposes of statistical analysis binary responses like these can be thought of as instances of coin flipping.</p>
 	<p>Coin flipping on the Internet should not be analyzed in the same way we analyze coin flipping in a formal experiment. For our purposes a formal experiment proceeds through three stages:</p>
 	<ol>
@@ -24,7 +25,7 @@
 	<p>In addition, on the Internet, the number of trials is not under the control of the data scientist. Some products, services, or opinions may collect no or few responses while apparently similar items collect hundreds of responses. Does this mean that the items are different, or is herding at work?</p>
 	<h2>Two restaurants</h2>
 	<p>Imagine two identical, empty restaurants located side by side. Assume that a couple going for dinner pick the restaurant to the right purely by chance. The next person or group to come along is likely to view the restaurant on the right as better, because it has patrons, and to patronize it themselves. Soon, the restaurant on the right will be bustling while the restaurant on the left is shunned.</p>
-	<p>I contend that to model coin flips on the Internet, then, we need to model two related phenomena:</p>
+	<p>Following the intuition gained from the restaurant scenario, I contend that to model coin flips on the Internet we need to model two related phenomena:</p>
 	<ol>
 		<li>Given two or more similar (perhaps identical) items, the item that has collected more responses in the past is likely to collect more in the future.</li>
 		<li>For a given item, the average approval rating at a given point in time may affect subsequent responses.</li>
@@ -42,7 +43,7 @@
 			<p class='math'>
 			`p_2 = (y_2 + 1) / (n_2 + 2)`
 			</p>
-		where y<sub>2</sub> is the observed number of up-votes and n<sub>2</sub> is the total number of votes for the item the visitor has chosen. The visitor then up-votes with probability p<sub>2</sub>. If they do not provide an up-vote then they provide a down-vote.
+		where y<sub>2</sub> is the observed number of up-votes and n<sub>2</sub> is the total number of votes for the item (that is, the sum of the up votes and down votes). The visitor then up-votes with probability p<sub>2</sub>. If they do not provide an up-vote then they provide a down-vote.
 		</li>
 	</ol>
 	<p>Notice that for the first visitor to the website (before any responses have been recorded)</p>
@@ -52,11 +53,23 @@
 	<p>This make intuitive sense, given our assumption that visitors arrive with no predispositions.</p>
 	<h2>Simulation</h2>
 	<p>We can simulate visitors arriving at a web page and responding--either to Item 1 or 2, and either thumbs up or thumbs down--as a dynamically updating decision tree, coupled with a dynamically updating set of probabilities. The probabilities are updated according to the Bayesian inference equations exhibited above.</p>
-	<button id='visit'>Visit</button><br>
+	<p>Please try pressing the various Visit buttons, and the Clear button, a few times.</p>
+	<button id='visit'>Visit</button>&nbsp;
+	<button id='visit100'>Visit 100x</button>&nbsp;
+	<button id='visit1000'>Visit 1000x</button>&nbsp;
+	<button id='clear'>Clear</button><br>
 	<div id='main'>
 		<svg id='numbs'></svg><svg id='probs'></svg>
 	</div>
-	<p>TBD...</p>
+	<h2>Watch out for the herd</h2>
+	<p>The simulation above is random, so what you observe is going to be different, in detail, from what I have observed, but we are likely to observe the same general pattern. The pattern I have observed after running the simulation a few times is that one or more of the probabilities end up far from 0.5. This might suggest to the naive observer a population with strong proclivities regarding the choice of items and/or the choice of thumbs up or thumbs down. In fact, in the present simulation, the apparent proclivities arise entirely as the result of herd following similar to the restaurant situation described earlier.</p>
+	<p>I am not saying that all ratings on the Internet are the result of herd following; only that it may play a role. In other words, peoples' "preferences" as recorded on the Internet may only partly reflect the opinions and desires they bring to the party.</p>
+	<h2>Bayesian inference, use with caution</h2>
+	<p>The simulation also suggests that Bayesian inference, used incautiously, could lead to spurious conclusions.</p>
+	<footer>
+	<p id=copyright>Copyright (C) 2017, John Van Praag</p>
+	</footer>
 </body>
 <script src="index.js"></script>
+<script src="initState.js"></script>
 </html>

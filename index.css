@@ -14,7 +14,7 @@ body {
 }
 button {
 	border-radius: 4px;
-	font-size: 1.25em;
+	font-size: 1.1em;
 	margin-bottom: 0.5em;
 	margin-top: -0.1em;
 	box-shadow: 0.1em 0.1em;
@@ -43,7 +43,7 @@ p {
 	font-size: 1.25em;
 }
 .count {
-	font-size: 2em;
+	font-size: 1.6em;
 	font-weight: normal;
 }
 .label {
@@ -52,8 +52,8 @@ p {
 	font-weight: 500;
 }
 .line {
-	stroke: gray;
-	stroke-width: 3px;
+	stroke: rgba(100, 55, 55, 0.85);
+	stroke-width: 2px;
 }
 .math {
 	background-color: rgba(0, 0, 255, 0.015);
@@ -63,6 +63,14 @@ p {
 	fill: rgba(255, 255, 128, 1);
 	stroke: rgba(0, 0, 255, 0.75);
 	stroke-width: 2px;
+}
+.prob {
+	font-size: 1.5em;
+	font-weight: normal;
+}
+.title {
+	font-size: 1.4em;
+	font-family: sans-serif;
 }
 #main {
 	display: flex;
@@ -75,4 +83,12 @@ p {
 #probs {
 	display: block;
 	float: right;
+}
+
+/* Publication related. */
+#copyright {
+	font-style: italic;
+}
+p#pub {
+	font-style: italic;
 }
