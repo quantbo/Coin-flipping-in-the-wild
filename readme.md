@@ -11,3 +11,5 @@ There are two conclusions:
 1) Data scientists should take herding into account when assessing responding on the Internet.
 
 2) Bayesian inference, applied sequentially, can lead to misleading conclusions.
+
+The web page for the present project can be viewed on <a href='https://quantbo.github.io/' target="_blank">My GitHub Pages</a>.
