@@ -1,4 +1,4 @@
-##Coin flipping in the wild
+## Coin flipping in the wild
 
 A common way to model, or think about, binary repsonses is to view them as instances of coin flipping. In this view the coin flips are usually assumed to be independent: prior flips do not affect subsequent ones.
 
