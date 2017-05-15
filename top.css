@@ -1,6 +1,9 @@
-/*_top.css:
+/*top.css:
 Top level CSS.
 Link to this ahead of CSS relevant to a specific project.
+
+A NOTE ON THE FILENAME
+I originally named this file '_top.css'. If a filename begins with an underscore it is ignored by Jekyll, used by GitHub Pages. To avoid this and perhaps similar mishaps I renamed the file to 'top.css'.
 */
 a {
 	color:blueviolet;

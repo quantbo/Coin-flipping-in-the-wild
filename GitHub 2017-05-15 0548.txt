@@ -1,0 +1,13 @@
+I have the following repo on GitHub that is displayed on GitHub Pages:
+
+https://github.com/quantbo/Coin-flipping-in-the-wild
+
+I recently reorganized the CSS, adding a second CSS file: _top.css
+
+When I display index.html on my local machines everything works perfectly. However, on GitHub Pages, index.html displays as though _top.css were missing. When I do a page source on Chrome, and click on _top.css, it shows it as missing. As you can see, _top.css is present in the repo.
+
+Please advise.
+
+Thanks,
+
+John
